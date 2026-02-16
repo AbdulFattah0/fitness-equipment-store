@@ -1,0 +1,53 @@
+npx quasar dev
+
+
+
+
+
+CREATE DATABASE FitnessEquipmentDB;
+USE FitnessEquipmentDB;
+
+-- Create Brands Table
+CREATE TABLE Brands (
+    Id INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Description TEXT NOT NULL
+);
+
+-- Create Products Table
+CREATE TABLE Products (
+    Id VARCHAR(50) PRIMARY KEY,
+    BrandId INT NOT NULL,
+    ProductName VARCHAR(100) NOT NULL,
+    GraphicName VARCHAR(100),
+    CostPrice MONEY NOT NULL,
+    MSRP MONEY NOT NULL,
+    QtyOnHand INT NOT NULL,
+    QtyOnBackOrder INT NOT NULL,
+    Description VARCHAR(2000) NOT NULL,
+    FOREIGN KEY (BrandId) REFERENCES Brands(Id) ON DELETE CASCADE
+);
+
+-- Insert Brands
+INSERT INTO Brands (Id, Name, Description) VALUES
+(1, 'FitPro', 'Premium quality fitness gear for professionals'),
+(2, 'ActiveGear', 'Affordable fitness essentials for all levels'),
+(3, 'ZenFitness', 'Eco-friendly fitness equipment and accessories');
+
+-- Insert Products
+INSERT INTO Products (Id, BrandId, ProductName, GraphicName, CostPrice, MSRP, QtyOnHand, QtyOnBackOrder, Description) VALUES
+('FP001', 1, 'Resistance Bands', 'resistance_bands.png', 25.00, 29.99, 100, 0, 'Resistance bands in various strengths for targeted workouts.'),
+('FP002', 1, 'Adjustable Dumbbells', 'adjustable_dumbbells.png', 175.00, 199.99, 50, 5, 'Adjustable dumbbells ranging from 5 to 50 lbs.'),
+('FP003', 1, 'Yoga Mat', 'yoga_mat.png', 30.00, 39.99, 150, 0, 'Yoga mat with extra padding and non-slip surface.'),
+('FP004', 1, 'Treadmill', 'treadmill.png', 500.00, 599.99, 20, 2, 'Foldable treadmill with LCD display.'),
+('FP005', 1, 'Kettlebell Set', 'kettlebell_set.png', 80.00, 89.99, 80, 10, 'Set of three kettlebells for targeted training.'),
+('AG001', 2, 'Jump Rope', 'jump_rope.png', 10.00, 14.99, 200, 0, 'Speed jump rope for cardio workouts.'),
+('AG002', 2, 'Ab Roller', 'ab_roller.png', 20.00, 24.99, 120, 5, 'Ab roller with ergonomic grips.'),
+('AG003', 2, 'Push-Up Bars', 'pushup_bars.png', 15.00, 19.99, 100, 0, 'Push-up bars with non-slip design.'),
+('AG004', 2, 'Resistance Tubes', 'resistance_tubes.png', 30.00, 34.99, 90, 10, 'Set of five resistance tubes for strength training.'),
+('AG005', 2, 'Foam Roller', 'foam_roller.png', 25.00, 29.99, 75, 0, 'Foam roller for muscle recovery.'),
+('ZF001', 3, 'Eco Yoga Mat', 'eco_yoga_mat.png', 45.00, 49.99, 60, 0, 'Eco-friendly yoga mat made from recycled materials.'),
+('ZF002', 3, 'Cork Yoga Blocks', 'cork_yoga_blocks.png', 18.00, 22.99, 100, 0, 'Set of two cork yoga blocks for balance.'),
+('ZF003', 3, 'Balance Board', 'balance_board.png', 70.00, 79.99, 40, 5, 'Wooden balance board for core training.'),
+('ZF004', 3, 'Massage Ball Set', 'massage_ball_set.png', 12.00, 15.99, 150, 0, 'Set of three massage balls for muscle relief.'),
+('ZF005', 3, 'Pilates Ring', 'pilates_ring.png', 17.00, 19.99, 90, 0, 'Pilates ring for toning and stretching.');
